@@ -1,0 +1,65 @@
+---templates
+about_mission.html
+about.html
+admin_emergency.html
+admin_login.html
+base.html
+confirm_upi.html
+contact.html
+dashboard_user.html
+dashboard.html
+donate_emergency.html
+donate.html
+donor_dashboard.html
+index.html
+login.html
+payment_qr.html
+payment_success.html
+register.html
+thankyou.html
+trust_emergency.html
+trust_login.html
+trust_profile.html
+trusts.html
+
+---app.py
+
+---credentials.json
+  It contains the client_id and highly confidential client_secret used to identify your app to Google's servers. This file initiates the secure OAuth flow, telling Google where to redirect the user after authorization (the redirect_uris) and where to exchange the authorization code for a working access token. This process is essential for your app to gain the specific permission (scope) needed to send automated emails via the Gmail API.
+
+---token.json
+  This JSON contains the necessary Google OAuth tokens for your application to function. It holds the temporary token for immediate API calls and the refresh_token to generate new access tokens after the current one expires. The application is identified by its client_id and secured by the client_secret. The granted scope is explicitly limited to https://www.googleapis.com/auth/gmail.send, allowing only email sending. The current access token is set to expire on a specific date and time in 2025.
+
+---emergency.json
+[
+  {
+    "trust_username": "trust1user",
+    "trust_name": "Udhavum Ullangal Public Charitable Trust",
+    "purpose": "FOR EDUCATION",
+    "contact_phone": "9999",
+    "requested_40pct": 100.0,
+    "status": "pending",
+    "submitted_at": "2025-11-02T14:55:46.037399Z",
+    "notes": "",
+    "donations": [],
+    "collected": 0.0,
+    "total_required": null
+  },
+  {
+    "trust_username": "trust1user",
+    "trust_name": "Udhavum Ullangal Public Charitable Trust",
+    "purpose": "skills",
+    "contact_phone": "9999",
+    "requested_40pct": 500.0,
+    "status": "pending",
+    "submitted_at": "2025-11-02T15:06:18.346652Z",
+    "notes": "",
+    "donations": [],
+    "collected": 0.0,
+    "total_required": null
+  }
+]
+
+---donors.json
+{"D3194": {"username": "whdBQC", "password": "Nwvlc5", "photo": "static/photos\\D3194.png", "data": {"name": "Abinaya R", "gender": "Female", "address": "No. 3/b, Pudhuvattaram Street, Kanakoilpettai, Thirukalukundram, Chengalpet District - 603 109.", "phone": "+918220583412", "email": "abinayaruthirakotti@gmail.com", "occupation": "Software developer", "income": "300000", "id": "D3194"}, "first_login_done": false, "donations": []}, "D1941": {"username": "wQzWLP", "password": "jTxVvm", "photo": "static/photos\\D1941.png", "data": {"name": "Abinaya R", "gender": "Female", "address": "No. 3/b, Pudhuvattaram Street, Kanakoilpettai, Thirukalukundram, Chengalpet District - 603 109.", "phone": "+918220583412", "email": "abinayaruthirakotti@gmail.com", "occupation": "Software developer", "income": "300000", "id": "D1941"}, "first_login_done": false, "donations": []}, "D7543": {"username": "SGnvls", "password": "bblbuZ", "photo": "static/photos\\D7543.png", "data": {"name": "Abinaya R", "gender": "Female", "address": "No. 3/b, Pudhuvattaram Street, Kanakoilpettai, Thirukalukundram, Chengalpet District - 603 109.", "phone": "+918220583412", "email": "abinayaruthirakotti@gmail.com", "occupation": "Software developer", "income": "300000", "id": "D7543"}, "first_login_done": true, "donations": [{"trust": "Udavum Ullangal", "amount": "1", "status": "confirmed", "donor_upi_id": "32"}]}, "D5473": {"username": "ElGPkh", "password": "ySLKkf", "photo": "static/photos\\D5473.png", "data": {"name": "Abinaya R", "gender": "Female", "address": "No. 3/b, Pudhuvattaram Street, Kanakoilpettai, Thirukalukundram, Chengalpet District - 603 109.", "phone": "+918220583412", "email": "abinayaruthirakotti@gmail.com", "occupation": "Software developer", "income": "300000", "id": "D5473"}, "first_login_done": false, "donations": []}, "D9454": {"username": "mBWuun", "password": "EbvhtL", "photo": "static/photos\\D9454.png", "data": {"name": "Abinaya R", "gender": "Female", "address": "No. 3/b, Pudhuvattaram Street, Kanakoilpettai, Thirukalukundram, Chengalpet District - 603 109.", "phone": "+918220583412", "email": "abinayaruthirakotti@gmail.com", "occupation": "Software developer", "income": "300000", "id": "D9454"}, "first_login_done": true, "donations": [{"trust": "Hope Public Charitable Trust", "amount": "3", "status": "confirmed", "donor_upi_id": "6"}, {"trust": "Udhavum Ullangal Public Charitable Trust", "amount": "1", "status": "confirmed", "donor_upi_id": "2"}, {"trust": "Udhavum Ullangal Public Charitable Trust", "amount": "5", "status": "pending"}, {"trust": "Udhavum Ullangal Public Charitable Trust", "amount": "3", "status": "pending"}]}, "D1611": {"username": "dlgLVD", "password": "zorjJX", "photo": "static/photos\\D1611.png", "data": {"name": "hariganesh TJ", "gender": "Male", "address": "No. 3/b, Pudhuvattaram Street, Kanakoilpettai, Thirukalukundram, Chengalpet District - 603 109.", "phone": "+918220583412", "email": "hariganeshnd@gmail.com", "occupation": "software developer", "income": "33333", "id": "D1611"}, "first_login_done": true, "donations": [{"trust": "Udavum Ullangal", "amount": "1", "status": "confirmed", "donor_upi_id": "54"}, {"trust": "Udavum Ullangal", "amount": "1", "status": "confirmed", "donor_upi_id": "507263403065"}, {"trust": "Udhavum Ullangal Public Charitable Trust", "amount": "3", "status": "confirmed", "donor_upi_id": "530773203374"}]}}
+
