@@ -1,3 +1,16 @@
+#Folder Structures
+/*where
+---Folder
+-----Subfolder
+-------files*/
+
+---static
+-----css
+-------style.css
+-----img
+-------upi_qr.png (Mediator Qr-code for Payment)
+-----photos (Registered Images Stored)
+
 ---templates
 about_mission.html
 about.html
