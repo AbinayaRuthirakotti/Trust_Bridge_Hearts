@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="text-primary fw-bold mb-5 text-center display-5">Reach Out & Connect with TRUST BRIDGE HEARTS</h1>
+
+    <div class="row g-4 mb-5 p-4 bg-light rounded shadow-sm">
+        <h2 class="text-dark fw-bold mb-4 text-center">Trust Bridge Hearts Central Contacts</h2>
+        <p class="lead text-muted text-center mb-5">
+            Connect with our central team for general inquiries, donor support, or partnership opportunities.
+        </p>
+
+        <div class="col-lg-12">
+            <div class="row g-0"> 
+                
+                <div class="col-lg-12"> 
+                    <div class="card p-4 h-100 border-0 shadow-sm contact-bg-image-card">
+                        <div class="card-body contact-content-overlay">
+                            
+                            <h4 class="text-primary fw-bold mb-3 text-start">TBH Headquarters | Contact & Administration</h4> 
+                            
+                            <div class="row text-white mb-4"> 
+                                <div class="col-md-6 mb-2">
+                                    <i class="fas fa-envelope fa-fw me-2 text-warning"></i> 
+                                    <span class="fw-bold">Donor Support:</span> <a href="mailto:{{ tbh_contact.email_support }}" class="text-warning">{{ tbh_contact.email_support }}</a>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <i class="fas fa-envelope-open-text fa-fw me-2 text-warning"></i> 
+                                    <span class="fw-bold">Partnerships/Admin:</span> <a href="mailto:{{ tbh_contact.email_admin }}" class="text-warning">{{ tbh_contact.email_admin }}</a>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <i class="fas fa-phone-alt fa-fw me-2 text-warning"></i> 
+                                    <span class="fw-bold">Phone:</span> <a href="tel:{{ tbh_contact.phone }}" class="text-warning">{{ tbh_contact.phone }}</a>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <i class="fas fa-map-marker-alt fa-fw me-2 text-warning"></i> 
+                                    <span class="fw-bold">Address:</span> {{ tbh_contact.address }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="embed-responsive embed-responsive-16by9 p-1 bg-white rounded shadow-sm">
+                                        <iframe src="{{ tbh_contact.map_link }}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-12">
+            <div class="p-5 bg-white rounded card-shadow border-start border-5 border-success">
+                <h2 class="text-dark fw-bold mb-4 border-bottom pb-2 text-center">Our Verified Partner Trusts & Their Contacts</h2>
+                <p class="text-muted lead mb-5 text-center">
+                    For direct communication with our partner trusts regarding local activities, specific needs, or site visits.
+                </p>
+                
+                {% for trust in trusts %}
+                <div class="card mb-4 shadow-sm border-0 trust-contact-bg">
+                    <div class="card-body row">
+                        <div class="col-lg-6 text-white">
+                            <h4 class="card-title fw-bold mb-3">{{ trust.name }}</h4>
+                            <div class="mb-2">
+                                <i class="fas fa-envelope fa-fw me-2"></i> 
+                                <span class="fw-bold">Email:</span> <a href="mailto:{{ trust.email }}">{{ trust.email }}</a>
+                            </div>
+                            <div class="mb-2">
+                                <i class="fas fa-phone-alt fa-fw me-2"></i> 
+                                <span class="fw-bold">Phone:</span> <a href="tel:{{ trust.phone }}">{{ trust.phone }}</a>
+                            </div>
+                            <div class="mb-3">
+                                <i class="fas fa-map-marker-alt fa-fw me-2"></i> 
+                                <span class="fw-bold">Address:</span> {{ trust.address }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="embed-responsive embed-responsive-16by9 h-100 p-1 bg-white rounded shadow-sm">
+                                <iframe src="{{ trust.map_link }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

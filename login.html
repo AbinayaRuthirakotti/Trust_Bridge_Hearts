@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="p-5 bg-white rounded card-shadow border-top border-5 border-primary">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Donor Login
+            </h1>
+            <p class="text-center mb-4 text-muted">
+                Log in to view your donation history and support a verified trust.
+            </p>
+
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                <div class="mb-4">
+                    <label for="username" class="form-label fw-bold">Username</label>
+                    <input type="text" name="username" id="username" class="form-control form-control-lg" placeholder="Enter Username" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="password" class="form-label fw-bold">Password</label>
+                    <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Enter Password" required>
+                </div>
+                
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold">
+                        Login
+                    </button>
+                </div>
+            </form>
+            
+            <hr>
+
+            <p class="mt-3 text-center">
+                New donor? <a href="{{ url_for('register') }}" class="fw-bold">Register Here</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

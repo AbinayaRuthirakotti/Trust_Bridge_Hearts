@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Scan the QR Code to Pay</h2>
+<p>Trust: {{ donation.trust }} | Amount: ₹{{ donation.amount }}</p>
+<img src="{{ url_for('static', filename='img/' + donation.qr_path.split('/')[-1]) }}" alt="QR Code">
+
+<button id="confirmBtn" class="btn btn-success mt-3">I Have Paid</button>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('confirmBtn').addEventListener('click', function() {
+    fetch('/confirm_payment', {method:'POST'})
+    .then(res => res.json())
+    .then(data => {
+        if(data.status=='success'){
+            Swal.fire({
+                icon: 'success',
+                title: 'Payment Successful 🎉',
+                text: data.message,
+                confirmButtonText: 'Go to Dashboard'
+            }).then(() => {
+                window.location.href = "/donor_dashboard";
+            });
+        } else {
+            Swal.fire('Error', data.message, 'error');
+        }
+    });
+});
+</script>
+{% endblock %}

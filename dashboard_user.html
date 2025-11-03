@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Trust Dashboard</h2>
+<p>Send expense bills or photos to donor</p>
+<form method="POST" enctype="multipart/form-data">
+  <div class="mb-3"><label>Donor Name:</label><input type="text" name="donor_name" class="form-control" required></div>
+  <div class="mb-3"><label>Donor Email:</label><input type="email" name="donor_email" class="form-control" required></div>
+  <div class="mb-3">
+    <label>Trust Name:</label>
+    <select name="trust_name" class="form-control" required>
+      {% for trust in trusts %}
+      <option value="{{ trust.name }}">{{ trust.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label>Upload Expense Bills / Photos:</label>
+    <input type="file" name="photos" multiple class="form-control" accept=".jpg,.jpeg,.png,.pdf">
+  </div>
+  <button type="submit" class="btn btn-success">Send Bill to Donor</button>
+</form>
+{% endblock %}

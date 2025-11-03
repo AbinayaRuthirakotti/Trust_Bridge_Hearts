@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-7 col-lg-6">
+        <div class="p-5 bg-white rounded card-shadow text-center">
+            
+            <h1 class="text-dark display-6 fw-bold mb-4">
+                Scan to Pay Securely
+            </h1>
+            
+            <div class="p-3 mb-4 rounded border border-primary bg-light">
+                <p class="fs-5 mb-1 text-dark">
+                    **Trust:** <span class="fw-bold text-primary">{{ trust }}</span>
+                </p>
+                <p class="fs-3 fw-bolder mb-0 text-success">
+                    **Amount:** ₹{{ amount }}
+                </p>
+            </div>
+            
+            <p class="lead text-muted mb-4">
+                Use any UPI app (PhonePe, Google Pay, Paytm, etc.) to scan the QR code below.
+            </p>
+
+            <div class="d-flex justify-content-center mb-5">
+                <img src="{{ url_for('static', filename='img/upi_qr.png') }}" 
+                     alt="UPI QR Code" 
+                     width="280" height="280" 
+                     class="img-fluid border p-3 rounded shadow-lg">
+            </div>
+
+            <div class="alert alert-info border-start border-5 border-info py-3">
+                <h5 class="fw-bold text-dark">Payment Complete?</h5>
+                <p class="mb-0">
+                    Once your payment is successful in your UPI app, click the button below to confirm your transaction details.
+                </p>
+            </div>
+            
+            <a href="{{ url_for('confirm_upi') }}" class="d-grid mt-4">
+                <button class="btn btn-success btn-lg fw-bold">
+                    Confirm Payment Details
+                </button>
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block qr_code %}
+  {# The qr_code block is now redundant here since we use the dedicated image file, but kept for legacy compliance #}
+  {% if qr_code %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-7">
+        <div class="p-5 bg-white rounded card-shadow border-top border-5 border-danger">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Emergency Funding Request
+            </h1>
+            <p class="lead text-center mb-5 text-muted">
+                Submit an urgent request for immediate support. The target amount here is **40%** of the total requirement for quick mobilization.
+            </p>
+
+            <form method="POST">
+                
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-danger mb-3">Trust Details</h5>
+                    <p class="mb-0 fw-bold">Submitting Trust: <span class="text-danger">{{ trust_name }}</span></p>
+                    <div class="form-text">This name is read automatically from your login session.</div>
+                </div>
+
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">Request Details</h5>
+                    
+                    <div class="mb-4">
+                        <label for="purpose" class="form-label fw-bold">Purpose of Emergency</label>
+                        <textarea name="purpose" id="purpose" class="form-control form-control-lg" rows="4" placeholder="e.g., Immediate medical attention for two children; Repairing a critical wall damaged by storm." required></textarea>
+                        <div class="form-text">Be specific and brief.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="required_amount" class="form-label fw-bold">40% Emergency Amount Required (₹)</label>
+                        <input type="number" name="required_amount" id="required_amount" min="100" class="form-control form-control-lg" placeholder="Enter amount for 40% target (e.g., 50000)" required>
+                        <div class="form-text text-danger">This will be the target amount for immediate donor collection.</div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="contact_phone" class="form-label fw-bold">Emergency Contact Phone</label>
+                        <input type="tel" name="contact_phone" id="contact_phone" class="form-control form-control-lg" placeholder="Enter immediate contact number" required>
+                    </div>
+                </div>
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-danger btn-lg fw-bold">
+                        Submit Emergency Request to Admin
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

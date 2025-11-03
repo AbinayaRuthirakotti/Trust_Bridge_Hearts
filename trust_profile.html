@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card p-5 shadow-lg card-shadow">
+            <h1 class="display-5 mb-4 text-dark">Profile: {{ trust.name }}</h1>
+            
+            <p class="lead">This is the dedicated profile for our verified partner trust. Here, donors can find comprehensive information, recent activities, and specific needs.</p>
+            
+            <div class="mb-4 p-4 border rounded bg-light">
+                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-handshake me-2 text-primary"></i> Our Story & Mission</h3>
+                
+                {% if trust.focus == 'Education & Shelter' or trust.focus == 'Education First' %}
+                    <p class="mb-0 text-muted">Our core mission is to break the cycle of poverty through **uninterrupted education**. We run a full-time children's home and focus exclusively on securing scholarships, providing necessary tutoring, and equipping students with digital literacy and technology access to ensure they can compete academically and pursue higher education.</p>
+                
+                {% elif trust.focus == 'Healthcare & Nutrition' %}
+                    <p class="mb-0 text-muted">We specialize in providing **holistic health and nutritional support** to children in our care. Funds directed here ensure children receive critical medical treatments, necessary immunizations, balanced daily meals, and regular health check-ups. We prioritize a safe, nurturing environment that promotes physical and mental well-being.</p>
+                
+                {% elif trust.focus == 'Skill Development' %}
+                    <p class="mb-0 text-muted">This trust is dedicated to securing the **long-term independence** of young adults transitioning out of the orphanage system. We fund vocational training courses (e.g., computer repair, tailoring, certified trades), provide career counseling, and assist in job placement to ensure our youth have a stable pathway to financial freedom and successful integration into society.</p>
+                
+                {% else %}
+                    <p class="mb-0 text-muted">{{ trust.description | default('A detailed mission statement for this trust is coming soon. Currently, we are verified based on their focus area and ethical governance.') }}</p>
+                {% endif %}
+
+            </div>
+            
+            <div class="row mb-4 p-3 bg-light rounded border">
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>Primary Focus:</strong> <span class="badge bg-primary fs-6">{{ trust.focus }}</span></p>
+                    <p class="mb-1"><strong>Location:</strong> Chennai, India</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>Accountability:</strong> <span class="badge bg-success fs-6">Expense Proof Required</span></p>
+                    <p class="mb-1"><strong>Partner Since:</strong> 2023</p>
+                </div>
+            </div>
+            
+            <h3 class="mt-4 text-success">Why Support This Trust?</h3>
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item">Verified track record in their focus area.</li>
+                <li class="list-group-item">Committed to sending direct expense proof to donors.</li>
+                <li class="list-group-item">Directly serves underprivileged children in Chennai.</li>
+            </ul>
+            
+            <hr>
+            
+            <div class="text-center">
+                <a href="{{ url_for('donate') }}" class="btn btn-success btn-lg px-5">Donate to This Trust Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

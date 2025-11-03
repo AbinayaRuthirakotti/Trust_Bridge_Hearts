@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-8">
+        <div class="p-5 bg-white rounded card-shadow border-top border-5 border-success">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Donor Registration
+            </h1>
+            <p class="lead text-center mb-5 text-muted">
+                Join our community of transparent donors. Your details help us understand our impact better.
+            </p>
+
+            <form method="POST">
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">1. Your Personal Details</h5>
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-bold">Full Name</label>
+                        <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="e.g., John Doe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label fw-bold">Gender</label>
+                        <select name="gender" id="gender" class="form-select form-select-lg">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label fw-bold">Address</label>
+                        <textarea name="address" id="address" class="form-control form-control-lg" rows="3" placeholder="Your full address" required></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">2. Contact & Background</h5>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label fw-bold">Phone Number</label>
+                        <input type="tel" name="phone" id="phone" class="form-control form-control-lg" placeholder="e.g., +91 98765 43210" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">Email</label>
+                        <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="e.g., yourname@example.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="occupation" class="form-label fw-bold">Occupation</label>
+                        <input type="text" name="occupation" id="occupation" class="form-control form-control-lg" placeholder="e.g., Software Engineer, Teacher" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="income" class="form-label fw-bold">Annual Income (INR)</label>
+                        <input type="text" name="income" id="income" class="form-control form-control-lg" placeholder="e.g., 500000 (numeric only)" required>
+                        <div class="form-text">Your income helps us understand donor demographics, it's not used for eligibility.</div>
+                    </div>
+                </div>
+
+                <div class="mb-4 p-4 border rounded bg-light text-center">
+                    <h5 class="fw-bold text-primary mb-3">3. Capture Your Photo</h5>
+                    <p class="text-muted">A quick photo helps us verify your identity securely.</p>
+                    
+                    <div class="d-flex justify-content-center align-items-center flex-column mb-3">
+                        <video id="video" width="320" height="240" autoplay class="rounded shadow-sm mb-3"></video><br>
+                        <button type="button" id="capture" class="btn btn-secondary btn-lg mb-3">
+                            <i class="fas fa-camera me-2"></i> Capture Photo
+                        </button>
+                        <canvas id="canvas" width="320" height="240" style="display:none;" class="rounded shadow-sm"></canvas>
+                        <input type="hidden" name="photo_data" id="photo_data">
+                    </div>
+                    <div id="photo-status" class="form-text text-success fw-bold" style="display:none;">
+                        Photo Captured! You can now submit your registration.
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-success btn-lg px-5 fw-bold">
+                        Register Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const photo_data = document.getElementById('photo_data');
+    const captureButton = document.getElementById('capture');
+    const photoStatus = document.getElementById('photo-status');
+
+    // Request camera access
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.srcObject = stream;
+        })
+        .catch(err => {
+            console.error("Error accessing camera: ", err);
+            alert("Unable to access camera. Please ensure camera permissions are granted.");
+            captureButton.disabled = true; // Disable capture if camera fails
+        });
+
+    captureButton.addEventListener('click', () => {
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        photo_data.value = canvas.toDataURL('image/png');
+        photoStatus.style.display = 'block'; // Show photo captured message
+        captureButton.textContent = 'Recapture Photo'; // Change button text
+        captureButton.classList.remove('btn-secondary');
+        captureButton.classList.add('btn-info'); // Change button color
+        video.style.display = 'none'; // Hide video after capture
+        canvas.style.display = 'block'; // Show captured image
+        alert("Photo captured! Please submit the form to complete registration.");
+    });
+</script>
+{% endblock %}

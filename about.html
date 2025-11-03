@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="p-5 bg-white rounded card-shadow">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Trust Dashboard: Expense Submission
+            </h1>
+            <p class="lead text-center mb-5 text-muted">
+                Securely upload expense bills and photo proof. This evidence is sent directly to the donor to guarantee 100% transparency.
+            </p>
+
+            <div class="text-center mb-5">
+                <a href="{{ url_for('trust_emergency') }}" class="btn btn-danger btn-lg px-5 fw-bold">
+                    <i class="fas fa-exclamation-triangle me-2"></i> Submit Urgent Emergency Request
+                </a>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                
+                <div class="mb-4 p-3 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">1. Identify the Donor</h5>
+                    
+                    <div class="mb-3">
+                        <label for="donor_name" class="form-label fw-bold">Donor Name</label>
+                        <input type="text" name="donor_name" id="donor_name" class="form-control form-control-lg" placeholder="Enter Donor's Full Name" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="donor_email" class="form-label fw-bold">Donor Email</label>
+                        <input type="email" name="donor_email" id="donor_email" class="form-control form-control-lg" placeholder="Enter Donor's Registered Email" required>
+                    </div>
+                </div>
+
+                <div class="mb-4 p-3 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">2. Submit Proof of Impact</h5>
+
+                    <div class="mb-3">
+                        <label for="trust_name" class="form-label fw-bold">Trust Name (Self-Selected)</label>
+                        <select name="trust_name" id="trust_name" class="form-select form-select-lg" required>
+                            {% for trust in trusts %}
+                            <option value="{{ trust.name }}" {% if session.get('trust_name') == trust.name %}selected{% endif %}>
+                                {{ trust.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">This should match the currently logged-in trust.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="photos" class="form-label fw-bold">Upload Expense Bills / Photos (JPG, PNG, PDF)</label>
+                        <input type="file" name="photos" id="photos" multiple class="form-control form-control-lg" accept=".jpg,.jpeg,.png,.pdf" required>
+                        <div class="form-text">Please upload clear receipts or photographic evidence of the expenditure.</div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-success btn-lg px-5 fw-bold">
+                        Send Bill & Guarantee Transparency
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

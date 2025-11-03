@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-7">
+        <div class="p-5 bg-white rounded card-shadow border-top border-5 border-warning">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Emergency Appeal: {{ trust_name }}
+            </h1>
+            <p class="lead text-center mb-5 text-muted">
+                Your support is urgently needed for this critical cause. **100% of this donation** goes directly to the immediate need.
+            </p>
+
+            <div class="mb-4 p-4 border rounded bg-danger-subtle text-danger">
+                <h5 class="fw-bold mb-2">Purpose:</h5>
+                <p class="mb-3">{{ emergency.purpose }}</p>
+
+                <h5 class="fw-bold mb-2">Required Status:</h5>
+                <div class="progress mb-3" role="progressbar" aria-label="Emergency Progress" aria-valuenow="{{ collected / target * 100 }}" aria-valuemin="0" aria-valuemax="100" style="height: 25px;">
+                    <div class="progress-bar bg-danger" style="width: {{ collected / target * 100 }}%"></div>
+                </div>
+                <div class="row text-center fw-bold">
+                    <div class="col">Target (40%): ₹{{ target|int }}</div>
+                    <div class="col">Collected: ₹{{ collected|int }}</div>
+                    <div class="col">Remaining: ₹{{ remaining|int }}</div>
+                </div>
+            </div>
+
+            {% if remaining > 0 %}
+            <form method="POST">
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">Your Donation</h5>
+                    
+                    <div class="mb-4">
+                        <label for="amount" class="form-label fw-bold">Donation Amount (₹)</label>
+                        <input type="number" name="amount" id="amount" min="1" max="{{ remaining|int }}" class="form-control form-control-lg" placeholder="Max amount: ₹{{ remaining|int }}" required>
+                        <div class="form-text text-danger">This donation will be tracked against the emergency index: **{{ index }}**.</div>
+                    </div>
+                </div>
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-warning btn-lg fw-bold">
+                        Donate to Emergency & Get QR Code
+                    </button>
+                </div>
+            </form>
+            {% else %}
+            <div class="alert alert-success text-center fw-bold mt-4">
+                <i class="fas fa-check-circle me-2"></i> This emergency goal has been fully met. Thank you!
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

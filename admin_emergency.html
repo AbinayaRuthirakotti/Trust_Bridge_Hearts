@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Emergencies</title>
+<style>
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 3px 6px rgba(0,0,0,0.2);
+    width:300px;
+    margin:10px;
+    display:inline-block;
+    vertical-align:top;
+}
+.btn{
+    padding:6px;
+    color:white;
+    border-radius:6px;
+    text-decoration:none;
+    display:inline-block;
+}
+.approve{background:#28a745;}
+.reject{background:#dc3545;}
+</style>
+</head>
+<body>
+
+<h2>Emergency Requests (Admin)</h2>
+<p>Total Donors in system: {{ total_donors }}</p>
+
+{% for e in emergencies %}
+<div class="card">
+    <h3>{{ e.trust_name }}</h3>
+    <p><b>Purpose:</b> {{ e.purpose }}</p>
+    <p><b>Requested 40%:</b> ₹{{ e.requested_40pct }}</p>
+    <p><b>Status:</b> {{ e.status }}</p>
+    {% set idx = base_count - loop.index %}
+    {% if e.status == "pending" %}
+        <a class="btn approve" href="{{ url_for('admin_emergency_action', orig_index=idx, action='approve') }}">Approve</a>
+        <a class="btn reject" href="{{ url_for('admin_emergency_action', orig_index=idx, action='reject') }}">Reject</a>
+    {% endif %}
+</div>
+{% endfor %}
+
+</body>
+</html>

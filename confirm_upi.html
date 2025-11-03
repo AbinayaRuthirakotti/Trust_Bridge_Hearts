@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="p-5 bg-white rounded card-shadow border-top border-5 border-success">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Confirm Your Payment
+            </h1>
+            <p class="lead text-center mb-4 text-muted">
+                To complete the transaction record and maintain **100% traceability**, please enter the UPI ID used for the payment.
+            </p>
+
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                <div class="mb-4">
+                    <label for="upi_id" class="form-label fw-bold">Your UPI ID (used for payment)</label>
+                    <input type="text" name="upi_id" id="upi_id" class="form-control form-control-lg" placeholder="e.g., john.doe@okicici" required>
+                    <div class="form-text">This information is stored securely for verification purposes only.</div>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success btn-lg fw-bold">
+                        Confirm & Go to Dashboard
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

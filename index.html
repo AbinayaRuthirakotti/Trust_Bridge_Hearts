@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center p-5 bg-primary text-white rounded shadow-lg">
+    <h1 class="display-4 fw-bold mb-3">Your Donation, Our Unwavering Trust.</h1>
+    <p class="lead fs-4 mt-3">
+        **The 100% Transparent Bridge: You Fund the Need, We Guarantee the Proof.**
+    </p>
+    <p class="fs-5 opacity-75">
+        Inspired by the **Udhavum Ullangal** model, we guarantee accountability: you receive the actual expense receipt for every rupee spent, ensuring zero misuse.
+    </p>
+    <div class="mt-5">
+        <a href="{{ url_for('donate') }}" class="btn btn-xl me-3 px-5 py-3 fw-bolder shadow-lg rounded-3 btn-outline-light-custom">
+            DONATE NOW & GET YOUR PROOF
+        </a>
+        <a href="#about-us-section" class="btn btn-lg px-5 py-3 shadow-lg rounded-3 btn-outline-light-custom">
+            ABOUT TRUST BRIDGE HEARTS
+        </a>
+    </div>
+</div>
+
+<h2 class="text-center mt-5 mb-5 text-dark">The Bridge of Transparency: How We Work</h2>
+<div class="row text-center">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 p-4 border-0 card-shadow">
+            <h3 class="text-primary fs-2 mb-3">100% Traceability</h3>
+            <p>Our partner Trusts are **mandated to send the actual receipt and photo proof** of the purchase directly to your email.</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 p-4 border-0 card-shadow">
+            <h3 class="text-success fs-2 mb-3">Verified Partners</h3>
+            <p>We only list certified, high-impact children's homes in Chennai that meet rigorous standards for **ethical governance and financial health**.</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 p-4 border-0 card-shadow">
+            <h3 class="text-warning fs-2 mb-3">Focus on Core Needs</h3>
+            <p>Funds are primarily directed towards **Education, Critical Healthcare, and Sustained Livelihood Skills**, ensuring comprehensive support for every child.</p>
+        </div>
+    </div>
+</div>
+
+<div id="about-us-section" class="mt-5 p-5 bg-light rounded card-shadow border-top border-4 border-primary">
+    <h2 class="text-center mb-4 text-primary">About Trust Bridge Hearts (TBH)</h2>
+    <p class="lead text-center mb-5">
+        We are a technology-driven charitable intermediary dedicated to eliminating skepticism in philanthropy. TBH doesn't manage or store funds; we provide the **secure, verifiable digital infrastructure** that guarantees your donation reaches its intended use—the child's welfare. Our success is measured purely by the traceable impact we enable.
+    </p>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 p-4 border-0 shadow-sm">
+                <h3 class="fw-bold text-dark">Sustainability: Corporate Sponsorship</h3>
+                <p>
+                    To maintain our **zero-commission promise** on donor funds, the operational costs of our platform (server maintenance, security, development) are exclusively covered by **Corporate Social Responsibility (CSR) partnerships** and ethical advertisements.
+                </p>
+                <p class="small">
+                    **This ensures 100% of every donor's rupee goes directly to the children's trusts.**
+                </p>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card h-100 p-4 border-0 shadow-sm bg-info bg-opacity-10">
+                <h3 class="fw-bold text-dark">Advertisement for Funding (Our Pitch)</h3>
+                <p>
+                    **Partner with Transparency.** Does your company value accountability? By sponsoring Trust Bridge Hearts, you gain brand exposure to a highly engaged audience of socially conscious donors, while visibly supporting **ethical, traceable non-profit technology**.
+                </p>
+                <p class="mb-0 text-center"> 
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-sm fw-bold">Contact us for CSR Partnership Details</a>
+                </p>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

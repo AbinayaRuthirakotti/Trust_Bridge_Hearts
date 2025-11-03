@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="p-5 bg-white rounded card-shadow">
+    <h1 class="text-center mb-5 text-primary display-5 fw-bolder">
+        Verified Chennai Orphanage Trusts
+    </h1>
+    <p class="lead text-center mb-5">
+        These trusts are fully vetted and committed to our **100% Transparency Guarantee**, ensuring you receive expense proof for every donation. Click **View Profile** to learn about their mission and focus area.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+        {% for trust in trusts %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm p-3 bg-light text-center">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title fw-bold text-dark mb-4 mt-2">{{ trust.name }}</h5>
+                    
+                    {% if trust.focus %}
+                        <span class="badge rounded-pill bg-primary text-white mb-4 p-2">{{ trust.focus }}</span>
+                    {% endif %}
+
+                    <a href="{{ url_for('trust_profile', trust_name=trust.name) }}" 
+                       class="btn btn-outline-primary btn-lg mt-3 fw-bold">
+                        View Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-5 pt-4 border-top">
+        <a href="{{ url_for('donate') }}" class="btn btn-success btn-lg px-5">
+            Ready to Donate? Choose a Trust
+        </a>
+    </div>
+</div>
+
+{% endblock %}

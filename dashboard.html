@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All Registered Donors</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Donor ID</th><th>Name</th><th>Gender</th><th>Phone</th><th>Email</th><th>Occupation</th><th>Income</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for donor in donors %}
+    <tr>
+      <td>{{ donor.id }}</td>
+      <td>{{ donor.name }}</td>
+      <td>{{ donor.gender }}</td>
+      <td>{{ donor.phone }}</td>
+      <td>{{ donor.email }}</td>
+      <td>{{ donor.occupation }}</td>
+      <td>{{ donor.income }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{{ url_for('admin_logout') }}" class="btn btn-danger mt-3">Logout</a>
+{% endblock %}

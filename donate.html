@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-7">
+        <div class="p-5 bg-white rounded card-shadow border-top border-5 border-success">
+            
+            <h1 class="text-center mb-4 text-dark display-6 fw-bold">
+                Donate to a Verified Trust
+            </h1>
+            <p class="lead text-center mb-5 text-muted">
+                Choose the trust you wish to support and enter your desired amount. 100% of your donation is guaranteed to reach the children.
+            </p>
+
+            <form method="POST">
+                
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-success mb-3">Donor Recommendations</h5>
+                    <p class="mb-2">Based on the profiles of similar donors, we recommend you consider:</p>
+                    <ul class="list-group list-group-flush mb-0">
+                        {% for trust in recommended_trusts %}
+                        <li class="list-group-item bg-light border-0 px-0 fw-bold text-dark">
+                            <i class="fas fa-hand-holding-heart text-success me-2"></i> {{ trust }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="mb-4 p-4 border rounded bg-light">
+                    <h5 class="fw-bold text-primary mb-3">Your Donation Details</h5>
+                    
+                    <div class="mb-4">
+                        <label for="trust" class="form-label fw-bold">Select Trust:</label>
+                        <select name="trust" id="trust" class="form-select form-select-lg" required>
+                            {% for t in trusts %}
+                                <option value="{{ t.name }}">{{ t.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="amount" class="form-label fw-bold">Donation Amount (₹):</label>
+                        <input type="number" name="amount" id="amount" min="1" class="form-control form-control-lg" placeholder="Enter amount (e.g., 500)" required>
+                        <div class="form-text">Minimum donation is ₹1. Every rupee counts!</div>
+                    </div>
+                </div>
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-success btn-lg fw-bold">
+                        Generate QR Code for Payment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block qr_code %}
+  {# The QR code rendering remains the same, assuming it's injected by the block tag from base.html #}
+  {% if qr_code %}
+    <h3>Your Donation QR Code:</h3>
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+  {% endif %}
+{% endblock %}
